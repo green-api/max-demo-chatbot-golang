@@ -57,9 +57,9 @@ func (s GptScene) Start(bot *chatbot.Bot) {
 		if isExitCommand {
 			var welcomeFileURL string
 			if lang == "en" || lang == "es" || lang == "he" {
-				welcomeFileURL = "https://raw.githubusercontent.com/green-api/whatsapp-demo-chatbot-golang/refs/heads/master/assets/welcome_en.jpg"
+				welcomeFileURL = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/welcome_en.jpg"
 			} else {
-				welcomeFileURL = "https://raw.githubusercontent.com/green-api/whatsapp-demo-chatbot-golang/refs/heads/master/assets/welcome_ru.jpg"
+				welcomeFileURL = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/welcome_ru.jpg"
 			}
 			senderName := ""
 			if sd, ok := message.Body["senderData"].(map[string]interface{}); ok {

@@ -92,7 +92,7 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				message.ActivateNextScene(CreateGroupScene{})
 
 			case "8":
-				message.SendUrlFile("https://raw.githubusercontent.com/green-api/whatsapp-demo-chatbot-golang/refs/heads/master/assets/about_go.jpg", "logo.jpg",
+				message.SendUrlFile("https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/about_go.jpg", "logo.jpg",
 					util.GetString([]string{"about_go_chatbot", lang})+
 						util.GetString([]string{"link_to_docs", lang})+
 						util.GetString([]string{"links", lang, "chatbot_documentation"})+
@@ -126,9 +126,9 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 			case "menu", "меню", "Menu", "Меню":
 				var welcomeFileURL string
 				if lang == "en" || lang == "es" || lang == "he" {
-					welcomeFileURL = "https://raw.githubusercontent.com/green-api/whatsapp-demo-chatbot-golang/refs/heads/master/assets/welcome_en.jpg"
+					welcomeFileURL = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/welcome_en.jpg"
 				} else {
-					welcomeFileURL = "https://raw.githubusercontent.com/green-api/whatsapp-demo-chatbot-golang/refs/heads/master/assets/welcome_ru.jpg"
+					welcomeFileURL = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/welcome_ru.jpg"
 				}
 				message.SendUrlFile(welcomeFileURL, "welcome.jpg", util.GetString([]string{"menu", lang}))
 			case "":
