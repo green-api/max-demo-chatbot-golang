@@ -1,101 +1,102 @@
 # max-demo-chatbot-golang
 
-- [Документация на русском](README_RU.md).
+- [Documentation in English](README_EN.md).
 
-An example of a chatbot written in Go using the API service for Whatsapp [green-api.com](https://green-api.com/en/).
-The chatbot clearly demonstrates the use of the API to send text messages, files, pictures, locations, contacts, and integrates OpenAI GPT for intelligent conversations.
-
-
-## Content
-
-* [Installing the environment for running the chatbot](#setting-up-the-environment-for-running-the-chatbot)
-* [Launch chatbot](#launch-a-chatbot)
-* [Chatbot setup](#setting-up-a-chatbot)
-* [Usage](#usage)
-* [Code structure](#code-structure)
-* [Message management](#message-management)
-* [GPT functionality](#gpt-functionality)
+Пример чатбота написанного на Golang с использованием API сервиса для Whatsapp [green-api.com](https://green-api.com/).
+Чатбот наглядно демонстрирует использование API для отправки текстовых сообщений, файлов, картинок, локаций, контактов, а также интегрирует OpenAI GPT для бесед с ИИ.
 
 
-## Setting up the environment for running the chatbot
+## Содержание
 
-To run the chatbot, you need to install the Golang environment. Download the latest release suitable for your operating system from [official website](https://go.dev/dl/). Follow the default settings and complete the environment installation.
+* [Установка среды для запуска чатбота](#установка-среды-для-запуска-чатбота)
+* [Запуск чатбота](#запуск-чатбота)
+* [Настройка чатбота](#настройка-чатбота)
+* [Использование](#использование)
+* [Структура кода](#структура-кода)
+* [Управление сообщениями](#управление-сообщениями)
+* [Функциональность GPT](#функциональность-gpt)
 
-After completion, you need to check whether the environment was deployed correctly. To do this, open a command line (for example, cmd or bash) and enter the query:
+
+## Установка среды для запуска чатбота
+
+Для запуска чатбота необходимо произвести установку среды Golang. Загрузите последний релиз, подходящий для вашей операционной системы, с [официального вебсайта](https://go.dev/dl/). Следуйте настройкам по умолчанию и завершите установку среды.
+
+После завершения необходимо проверить была ли среда развернута корректно. Для этого откройте командную строку (например, cmd или bash) и введите запрос:
 ```
     go version
 ```
-To work correctly, the response to the entered request must be a version of Go no lower than:
+Для корректной работы, ответом на введеный запрос должна быть версия Go не ниже:
 ```
-    go version go 1.19
+    go version go 1.20
 ```
 
-Download and unzip the [zip-archive](https://github.com/green-api/max-demo-chatbot-golang) of the project or clone it with the version control system command:
+Скачайте и разархивируйте [zip-архив](https://github.com/green-api/max-demo-chatbot-golang) проекта или клонируйте его командой системы контроля версий:
 
 <details>
-<summary>How to install Git version control?</summary>
+<summary>Как установить систему контроля версий Git?</summary>
 
-Download and install the Git version control system appropriate for your operating system from [official website](https://git-scm.com/downloads).
+Скачайте и установите систему контроля версий Git, подходящую для используемой операционной системы, с [официального вебсайта](https://git-scm.com/downloads).
+
 </details>
 
 ```
-    git clone https://github.com/green-api/max-demo-chatbot-golang
+git clone https://github.com/green-api/max-demo-chatbot-golang
 ```
 
-Open the project in any IDE.
+Откройте проект в любой IDE.
 
-The environment for launching the chatbot is ready, now you need to configure and launch the chatbot on your Whatsapp account.
+Среда для запуска чатбота готова, теперь необходимо произвести настройку и запустить чатбот на вашем аккаунте Whatsapp.
 
-## Launch a chatbot
+## Запуск чатбота
 
-In order to set up a chatbot on your Whatsapp account, you need to go to [your personal account](https://console.greenapi.com/) and register. For new users, [instructions](https://greenapi.com/en/docs/before-start/) are provided for setting up an account and obtaining the parameters necessary for the chatbot to work, namely:
+Для того, чтобы настроить чатбот на своем аккаунте Whatsapp, Вам необходимо перейти в [личный кабинет](https://console.green-api.com/) и зарегистрироваться. Для новых пользователей предоставлена [инструкция](https://green-api.com/docs/before-start/) для настройки аккаунта и получения необходимых для работы чатбота параметров, а именно:
 ```
     idInstance
     apiTokenInstance
 ```
 
-You'll also need an OpenAI API key to use the GPT functionality. You can obtain one from the [OpenAI platform](https://platform.openai.com/).
+Вам также понадобится API-ключ OpenAI для использования функциональности GPT. Вы можете получить его на [платформе OpenAI](https://platform.openai.com/).
 
-Create a `.env` file in the project root with the following variables:
+Создайте файл `.env` в корне проекта со следующими переменными:
 ```
-ID_INSTANCE=your_instance_id
-AUTH_TOKEN=your_api_token
-OPENAI_API_KEY=your_openai_api_key
+ID_INSTANCE=ваш_id_инстанса
+AUTH_TOKEN=ваш_api_токен
+OPENAI_API_KEY=ваш_openai_api_ключ
 ```
 
-Don't forget to enable all notifications in your instance settings, so that the chatbot can immediately start receiving messages.
+Не забудьте включить все уведомления в настройках инстанса, чтобы чатбот мог сразу начать принимать сообщения.
 
-You can then run the program by clicking start in the IDE interface or entering the following query on the command line:
+Далее можно запускать программу, для этого нажмите пуск в интерфейсе IDE или введите следующий запрос в командной строке:
 ```
-    go run main.go
+go run main.go
 ```
-This request will start the chatbot. The process begins with chatbot initialization, which includes changing the settings of the associated instance.
+Данный запрос запустит работу чатбота. Процесс начинается с инициализации чатбота, которая включает в себя изменение настроек связанного инстанса.
 
-The library [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang) contains a mechanism for changing instance settings using the [SetSettings](https://green-api.com/en/docs/api/account/SetSettings/) method, which is launched when the chatbot is turned on.
+В библиотеке [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang) прописан механизм изменения настроек инстанса методом [SetSettings](https://green-api.com/docs/api/account/SetSettings/), который запускается при включении чатбота.
 
-All settings for receiving notifications are disabled by default; the chatbot will enable the following settings:
+Все настройки по получению уведомлений выключены по умолчанию, чатбот включит следующие настройки:
 ```
-     "incomingWebhook": "yes",
-     "pollMessageWebhook": "yes",
-     "markIncomingMessagesReaded": "yes"
+    "incomingWebhook": "yes",
+    "pollMessageWebhook": "yes",
+    "markIncomingMessagesReaded": "yes"
 ```
-which are responsible for receiving notifications about incoming messages and polls.
+которые отвечают за получение уведомлений о входящих сообщениях и опросах.
 
-The process of changing settings takes several minutes, during which time the instance will be unavailable. Messages sent to the chatbot during this time will not be processed.
+Процесс изменения настроек занимает несколько минут, в течении этого времени инстанс будет недоступен. Сообщения отправленные чатботу в это время не будут обработаны.
 
-After the settings are applied, notifications about previously received incoming messages will be deleted. This process is also written in the library [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang) and starts automatically after changing the settings.
+После того, как будут применены настройки, произойдет удаление уведомлений о полученных ранее входящих сообщениях. Этот процесс так же прописан в библиотеке [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang) и автоматически запускается после изменения настроек.
 
-This is necessary so that the chatbot does not start processing messages from old chats.
+Это необходимо для того, чтобы чатбот не начал обрабатывать сообщения со старых чатов.
 
-After changing the settings and deleting incoming notifications, the chatbot will begin to respond to messages as standard. In total, this process takes no more than 5 minutes.
+После того, как изменения настроек и удаление входящих уведомлений будут исполнены, чатбот начнет стандартно отвечать на сообщения. Суммарно этот процесс занимает не больше 5 минут.
 
-To stop the chatbot, use the keyboard shortcut `Ctrl + C` in the command line.
+Чтобы остановить работу чатбота, используйте сочетание клавиш `Ctrl + C` в командной строке.
 
-## Setting up a chatbot
+## Настройка чатбота
 
-By default, the chatbot uses links to download files from the network, but users can add their own links to files, one for a file of any extension pdf / docx /... and one for a picture.
+По умолчанию чатбот использует ссылки для выгрузки файлов из сети, однако пользователи могут добавить свои ссылки на файлы, одну для файла любого расширения pdf / docx /... и одну для картинки.
 
-Links must lead to files from cloud storage or public access. In the file [`endpoints.go`](scenes/endpoints.go) there is the following code to send the file:
+Ссылки должны вести на файлы из облачного хранилища или открытого доступа. В файле [`endpoints.go`](scenes/endpoints.go) есть следующий код для отправки файла:
 ```go
 case "2":
     message.SendUrlFile(
@@ -103,9 +104,8 @@ case "2":
     "corgi.pdf",
     util.GetString([]string{"send_file_message", lang})+util.GetString([]string{"links", lang, "send_file_documentation"}))
 ```
-Add a link to a file of any extension as the first parameter of the `answerWithUrlFile` method and specify the file name in the second parameter. The file name must contain an extension, for example "somefile.pdf".
-This line after modification will be in the following format:
-
+Добавьте ссылку на файл любого расширения в качестве первого параметра метода `answerWithUrlFile` и задайте имя файлу во втором параметре. Имя файла должно содержать расширение, например "somefile.pdf".
+Данная строка после изменения будет в следующем формате:
 ```go
 case "2":
     message.SendUrlFile(
@@ -114,80 +114,80 @@ case "2":
     util.GetString([]string{"send_file_message", lang})+util.GetString([]string{"links", lang, "send_file_documentation"}))
 ```
 
-All changes must be saved, after which you can launch the chatbot. To launch the chatbot, return to [step 2](#launch-chatbot).
+Все изменения должны быть сохранены, после чего можно запускать чатбот. Для запуска чатбота вернитесь к [пункту 2](#запуск-чатбота).
 
-## Usage
+## Использование
 
-If the previous steps have been completed, then the chatbot should be working on your Whatsapp account. It is important to remember that the user must be authorized in [personal account](https://console.green-api.com/).
+Если предыдущие шаги были выполнены, то на вашем аккаунте Whatsapp должен работать чатбот. Важно помнить, что пользователь должен быть авторизован в [личном кабинете](https://console.green-api.com/).
 
-Now you can send messages to the chatbot!
+Теперь вы можете отправлять сообщения чатботу!
 
-The chatbot will respond to any message sent to your account.
-Since the chatbot supports 2 languages - Russian and English - before greeting the interlocutor, the chatbot will ask you to select a language of communication:
+Чатбот откликнется на любое сообщение отправленное на аккаунт.
+Так как чатбот поддерживает 2 языка - русский и английский - то прежде чем поприветствовать собеседника, чатбот попросит выбрать язык общения:
 ```
 1 - English
-2 - Russian
+2 - Русский
 ```
-Answer 1 or 2 to select the language for further communication. After you send 1, the chatbot will send a welcome message in English:
+Ответьте 1 или 2, чтобы выбрать язык для дальнейшего общения. После того как вы отправите 2, чатбот пришлет приветственное сообщение на русском языке:
 ```
-Welcome to GREEN-API chatbot, user! GREEN-API provides the following types of data sending. Select a number from the list to check how the sending method works
+Добро пожаловать в GREEN-API чатбот, пользователь! GREEN-API предоставляет отправку данных следующих видов. Выберите цифру из списка, чтобы проверить как работает метод отправки
 
-1. Text message 📩
-2. File 📋
-3. Picture 🖼
-4. Contact 📱
-5. Geolocation 🌎
+1. Текстовое сообщение 📩
+2. Файл 📋
+3. Картинка 🖼
+4. Контакт 📱
+5. Геолокация 🌎
 6. ...
-14. 🔥 Conversation with ChatGPT 🤖
+14. 🔥 Разговор с ChatGPT 🤖
 
-To return to the beginning write stop or 0
+Чтобы вернуться в начало напишите стоп
 ```
-By selecting a number from the list and sending it, the chatbot will answer which API sent this type of message and share a link to information about the API.
+Выбрав число из списка и отправив его, чатбот ответит каким API был отправлен данный тип сообщения и поделится ссылкой на информацию об API.
 
-For example, by sending 1, the user will receive in response:
+Например, отправив 1, пользователь получит в ответ:
 ```
-This message was sent via the sendMessage method
+Это сообщение отправлено через sendMessage метод
 
-To find out how the method works, follow the link
-https://greenapi.com/en/docs/api/sending/SendMessage/
-```
-
-If you send something other than numbers 1-14, the chatbot will succinctly answer:
-```
-Sorry, I didn't quite understand you, write a menu to see the possible options
-```
-The user can also call up the menu by sending a message containing "menu". And by sending "stop", the user will end the conversation with the chatbot and receive the message:
-```
-Thank you for using the GREEN-API chatbot, user!
+Чтобы узнать как работает метод, пройдите по ссылке
+https://green-api.com/docs/api/sending/SendMessage/
 ```
 
-### GPT Chat Mode
+### Режим чата с GPT
 
-By selecting option 14, you can interact with OpenAI's GPT model:
+Выбрав пункт 14, вы можете взаимодействовать с моделью GPT от OpenAI:
 
 ```
-🤖 You have started a conversation with ChatGPT.
-Ask any questions, and ChatGPT will try to answer them.
-To return to the main menu, type *menu*, *exit*, *stop*, or *back*.
+🤖 Вы начали разговор с ChatGPT. 
+Задавайте любые вопросы, и ChatGPT постарается на них ответить.
+Чтобы вернуться в главное меню, напишите *меню*, *выход*, *стоп* или *назад*.
 ```
 
-In this mode, your messages will be processed by GPT, and you'll receive intelligent responses. The conversation history is maintained throughout your session, allowing for contextual interactions.
+В этом режиме ваши сообщения будут обрабатываться GPT, и вы будете получать интеллектуальные ответы. История беседы сохраняется на протяжении всей сессии, что позволяет вести контекстные диалоги.
 
-To exit GPT mode and return to the main menu, type any of the exit commands like "menu", "exit", "back", etc.
+Чтобы выйти из режима GPT и вернуться в главное меню, напишите любую из команд выхода, например "меню", "выход", "назад" и т.д.
 
-## Code structure
+Если отправить что-то помимо чисел 1-14, то чатбот лаконично ответит:
+```
+Извините, я не совсем вас понял, напишите меню, чтобы посмотреть возможные опции
+```
+Так же пользователь может вызвать меню, отправив сообщение содержащее "меню". И отправив "стоп", пользователь завершит беседу с чатботом и получит сообщение:
+```
+Спасибо за использование чатбота GREEN-API, пользователь!
+```
 
-The main file of the chatbot is [`main.go`](main.go), it contains the `main` function and program execution begins from there. In this class, the bot object is initialized using the `BotFactory` class, the GPT bot is configured and registered, the first scene is set, and the bot is launched.
+## Структура кода
+
+Основной файл чатбота это [`main.go`](main.go), в нем находится функция `main` и с него начинается выполнение программы. В этом классе происходит инициализация объекта бота при помощи класса `BotFactory`, настройка и регистрация бота GPT, установка первой сцены и запуск бота.
 
 ```go
 func main() {
-    // Load environment variables
+    // Загрузка переменных окружения
     err := godotenv.Load(".env")
     
-    // Initialize the base bot
+    // Инициализация базового бота
     baseBot := chatbot.NewBot(idInstance, authToken)
 
-    // Initialize and register the GPT bot
+    // Инициализация и регистрация GPT бота
     gptConfig := gptbot.GPTBotConfig{
        IDInstance:       idInstance,
        APITokenInstance: authToken,
@@ -199,64 +199,63 @@ func main() {
     gptHelper := gptbot.NewMaxGptBot(gptConfig)
     registry.RegisterGptHelper(gptHelper)
 
-    // Set the start scene and launch the bot
+    // Установка начальной сцены и запуск бота
     baseBot.SetStartScene(scenes.StartScene{})
     baseBot.StartReceivingNotifications()
 }
 ```
 
-This bot uses a scene pattern to organize its code. This means that the chatbot logic is divided into fragments (scenes), the scene corresponds to a certain state of the dialogue and is responsible for processing the response.
+Данный бот использует паттерн сцен для организации кода. Это значит, что логика чатбота разделена на фрагменты (сцены), сцена соответствует определенному состоянию диалога и отвечает за обработку ответа.
 
-Only one scene can be active at a time for each dialogue.
+Для каждого диалога одновременно активна может быть только одна сцена.
 
-For example, the first scene [`start.go`](scenes/start.go) is responsible for the welcome message. Regardless of the text of the message, the bot asks what language is convenient for the user and includes the following scene, which is responsible for processing the response.
+Например, первая сцена [`start.go`](scenes/start.go) отвечает за приветственное сообщение. Вне зависимости от текста сообщения, бот спрашивает какой язык удобен пользователю и включает следующую сцену, которая отвечает за обработку ответа.
 
-There are 5 scenes in the bot:
+Всего в боте 5 сцен:
 
-- Scene [`start.go`](scenes/start.go) - responds to any incoming message, sends a list of available languages. Launches the `MainMenu` scene.
-- Scene [`mainMenu.go`](scenes/mainMenu.go) - processes the user's selection and sends the main menu text in the selected language. Launches the `Endpoints` scene
-- Scene [`endpoints.go`](scenes/endpoints.go) - executes the method selected by the user and sends a description of the method in the selected language. Can transition to the GPT scene when option 14 is selected.
-- Scene [`createGroup.go`](scenes/createGroup.go) - The scene creates a group if the user said that he added the bot to his contacts. If not, returns to the "endpoints" scene.
-- Scene [`gptScene.go`](scenes/gptScene.go) - Handles GPT conversation mode, processing user messages through OpenAI's API and maintaining conversation context.
+- Сцена [`start.go`](scenes/start.go) - отвечает на любое входящее сообщение, отправляет список доступных языков. Запускает сцену `MainMenu`.
+- Сцена [`mainMenu.go`](scenes/mainMenu.go) - обрабатывает выбор пользователя и отправляет текст главного меню на выбранном языке. Запускает сцену `Endpoints`.
+- Сцена [`endpoints.go`](scenes/endpoints.go) - выполняет выбранный пользователем метод и отправляет описание метода на выбранном языке. Может переходить в GPT-сцену при выборе пункта 14.
+- Сцена [`createGroup.go`](scenes/createGroup.go) - сцена создает группу, если пользователь сказал, что добавил бота в свои контакты. Если нет, возвращается к сцене «endpoints».
+- Сцена [`gptScene.go`](scenes/gptScene.go) - обрабатывает режим беседы с GPT, обрабатывая сообщения пользователя через API OpenAI и поддерживая контекст беседы.
 
-The file [`util.go`](util/util.go) contains the `IsSessionExpired()` method which is used to set the start scene again if the bot has not been contacted for more than 2 minutes.
+Файл [`util.go`](util/util.go) содержит метод `IsSessionExpired()` который используется, чтобы снова устанавливать стартовую сцену, если боту не пишут более 2 минут.
 
-The file [`ymlReader.go`](util/ymlReader.go) contains the `getString()` method which returns strings from the `strings.xml` file by key. This file is used to store the texts of the bot's responses.
+Файл [`ymlReader.go`](util/ymlReader.go) содержит метод `getString()` который возвращает строки из файла `strings.xml` по ключам. Этот файл используется для хранения текстов ответов бота.
 
-A new component is the [`registry`](registry) package, which provides a global access point to the GPT bot instance using a registry pattern. This allows any scene to access the GPT functionality without tight coupling.
+Новый компонент - модуль [`registry`](registry), который обеспечивает глобальную точку доступа к экземпляру GPT-бота.
 
-## Message management
+## Управление сообщениями
 
-As the chatbot indicates in its responses, all messages are sent via the API. Documentation on message sending methods can be found at [greenapi.com/en/docs/api/sending](https://greenapi.com/en/docs/api/sending/).
+Как и указывает чатбот в ответах, все сообщения отправлены через API. Документацию по методам отправки сообщений можно найти на сайте [green-api.com/docs/api/sending](https://green-api.com/docs/api/sending/).
 
-As for receiving messages, messages are read through the HTTP API. Documentation on methods for receiving messages can be found at [greenapi.com/en/docs/api/receiving/technology-http-api](https://greenapi.com/en/docs/api/receiving/technology-http-api/).
+Что касается получения сообщений, то сообщения вычитываются через HTTP API. Документацию по методам получения сообщений можно найти на сайте [green-api.com/docs/api/receiving/technology-http-api](https://green-api.com/docs/api/receiving/technology-http-api/).
 
-The chatbot uses the library [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang), where methods for sending and receiving messages are already integrated, so messages are read automatically and sending regular text messages is simplified.
+Чатбот использует библиотеку [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang), где уже интегрированы методы отправки и получения сообщений, поэтому сообщения вычитываются автоматически, а отправка обычных текстовых сообщений упрощена.
 
-For example, a chatbot automatically sends a message to the contact from whom it received the message:
+Например, чатбот автоматически отправляет сообщение контакту, от которого получил сообщение:
 ```go
-     message.AnswerWithText(util.GetString([]string{"select_language"}))
+    message.AnswerWithText(util.GetString([]string{"select_language"}))
 ```
-However, other send methods can be called directly from the [whatsapp-api-client-golang](https://github.com/green-api/whatsapp-api-client-golang) library. Like, for example, when receiving an avatar:
+Однако другие методы отправки можно вызвать напрямую из библиотеки [whatsapp-api-client-golang](https://github.com/green-api/whatsapp-api-client-golang). Как, например, при получении аватара:
 ```go
-     message.GreenAPI.Methods().Service().GetAvatar(chatId)
+    message.GreenAPI.Methods().Service().GetAvatar(chatId)
 ```
 
-## GPT Functionality
+## Функциональность GPT
 
-The chatbot integrates with OpenAI's GPT models using the [whatsapp-chatgpt-go](https://github.com/green-api/max-chatgpt-go) library. This enables the bot to have intelligent conversations with users.
+Чатбот интегрируется с моделями GPT от OpenAI с помощью библиотеки [whatsapp-chatgpt-go](https://github.com/green-api/max-chatgpt-go). Это позволяет боту вести интеллектуальные беседы с пользователями.
 
-### How it works
+### Как это работает
 
-1. **Initialization**: The GPT bot is initialized in `main.go` with configuration including the OpenAI API key and system prompt.
-2. **Registry Pattern**: The bot instance is stored in a registry to be accessible from any scene.
-3. **GPT Scene**: A dedicated scene (`gptScene.go`) handles the GPT conversation mode.
-4. **Session Management**: The GPT scene maintains conversation history using the session data, enabling contextual exchanges.
-5. **Exit Commands**: Users can exit the GPT mode using various commands in different languages.
+1. **Инициализация**: GPT-бот инициализируется в `main.go` с конфигурацией, включающей API-ключ OpenAI и системный промпт.
+2. **Паттерн реестра**: Экземпляр бота хранится в реестре, чтобы быть доступным из любой сцены.
+3. **GPT-сцена**: Специальная сцена (`gptScene.go`) обрабатывает режим беседы с GPT.
+4. **Управление сессией**: GPT-сцена поддерживает историю беседы, используя данные сессии, что позволяет вести контекстные диалоги.
+5. **Команды выхода**: Пользователи могут выйти из режима GPT, используя различные команды на разных языках.
 
+## Лицензия
 
-## License
-
-Licensed under [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](https://creativecommons.org/licenses/by-nd/4.0/).
+Лицензировано на условиях [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](https://creativecommons.org/licenses/by-nd/4.0/).
 
 [LICENSE](https://github.com/green-api/max-demo-chatbot-golang/blob/master/LICENCE).
