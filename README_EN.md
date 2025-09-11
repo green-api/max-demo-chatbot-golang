@@ -138,7 +138,7 @@ Welcome to GREEN-API chatbot, user! GREEN-API provides the following types of da
 4. Contact 📱
 5. Geolocation 🌎
 6. ...
-14. 🔥 Conversation with ChatGPT 🤖
+9. 🔥 Conversation with ChatGPT 🤖
 
 To return to the beginning write stop or 0
 ```
@@ -152,7 +152,7 @@ To find out how the method works, follow the link
 https://greenapi.com/en/docs/api/sending/SendMessage/
 ```
 
-If you send something other than numbers 1-14, the chatbot will succinctly answer:
+If you send something other than numbers 1-9, the chatbot will succinctly answer:
 ```
 Sorry, I didn't quite understand you, write a menu to see the possible options
 ```
@@ -163,7 +163,7 @@ Thank you for using the GREEN-API chatbot, user!
 
 ### GPT Chat Mode
 
-By selecting option 14, you can interact with OpenAI's GPT model:
+By selecting option 9, you can interact with OpenAI's GPT model:
 
 ```
 🤖 You have started a conversation with ChatGPT.
@@ -215,7 +215,7 @@ There are 5 scenes in the bot:
 
 - Scene [`start.go`](scenes/start.go) - responds to any incoming message, sends a list of available languages. Launches the `MainMenu` scene.
 - Scene [`mainMenu.go`](scenes/mainMenu.go) - processes the user's selection and sends the main menu text in the selected language. Launches the `Endpoints` scene
-- Scene [`endpoints.go`](scenes/endpoints.go) - executes the method selected by the user and sends a description of the method in the selected language. Can transition to the GPT scene when option 14 is selected.
+- Scene [`endpoints.go`](scenes/endpoints.go) - executes the method selected by the user and sends a description of the method in the selected language. Can transition to the GPT scene when option 9 is selected.
 - Scene [`createGroup.go`](scenes/createGroup.go) - The scene creates a group if the user said that he added the bot to his contacts. If not, returns to the "endpoints" scene.
 - Scene [`gptScene.go`](scenes/gptScene.go) - Handles GPT conversation mode, processing user messages through OpenAI's API and maintaining conversation context.
 
