@@ -5,6 +5,10 @@ github.com/gabriel-vasile/mimetype v1.4.10 h1:zyueNbySn/z8mJZHLt6IPw0KoZsiQNszIp
 github.com/gabriel-vasile/mimetype v1.4.10/go.mod h1:d+9Oxyo1wTzWdyVUPMmXFvp4F9tea18J8ufA774AB3s=
 github.com/green-api/max-api-client-golang v1.0.1 h1:B6on/EQ19RotYE2Dx6goujA68FNZdCqAGovrDlRMhu0=
 github.com/green-api/max-api-client-golang v1.0.1/go.mod h1:26WX1pJWuk+t8kvQvjJg+emzDCBIz7t9UWbKaHoo82Y=
+github.com/green-api/max-chatbot-golang v1.0.1 h1:MTKn6Woy2aWtcDb9feVdG1SOKoMBzJwNQ5DipfXTby4=
+github.com/green-api/max-chatbot-golang v1.0.1/go.mod h1:6r2z2m/Qu61BbWcWLbz018GKCNcMAx9Nj+VrlEzOn6Q=
+github.com/green-api/max-chatgpt-go v1.0.2 h1:rcPXSbAcAXfE1yyFeXiFU2GW6k4d4TfMrqMPk22vl9I=
+github.com/green-api/max-chatgpt-go v1.0.2/go.mod h1:itfzRdY6GAV/9e6hhbybRXj+Ahohr/oFcZGkXYdT6QM=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/klauspost/compress v1.17.8 h1:YcnTYrq7MikUT7k0Yb5eceMmALQPYBW/Xltxn0NAMnU=

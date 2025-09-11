@@ -7,7 +7,7 @@ toolchain go1.24.2
 require (
 	github.com/green-api/max-api-client-golang v1.0.1
 	github.com/green-api/max-chatbot-golang v1.0.1
-	github.com/green-api/max-chatgpt-go v0.2.0
+	github.com/green-api/max-chatgpt-go v1.0.2
 	github.com/joho/godotenv v1.5.1
 	github.com/sashabaranov/go-openai v1.38.1
 	gopkg.in/yaml.v2 v2.4.0
