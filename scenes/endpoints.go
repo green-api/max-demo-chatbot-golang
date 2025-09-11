@@ -62,9 +62,9 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				message.SendUrlFile(fileLink, "audio.mp3", "")
 
 			case "5":
-				var fileLink = "https://storage.yandexcloud.net/sw-prod-03-test/ChatBot/Video_bot_eng.mp4"
+				var fileLink = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/Video_bot_en.mp4"
 				if lang == "ru" {
-					fileLink = "https://storage.yandexcloud.net/sw-prod-03-test/ChatBot/Video_bot_ru.mp4"
+					fileLink = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/Video_bot_ru.mp4"
 				}
 				message.SendUrlFile(fileLink, "video.mp4",
 					util.GetString([]string{"send_video_message", lang})+util.GetString([]string{"links", lang, "send_file_documentation"}))
@@ -120,7 +120,7 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				message.ActivateNextScene(GptScene{})
 
 			case "стоп", "Стоп", "stop", "Stop", "0":
-				message.SendText(util.GetString([]string{"stop_message", lang})+"*"+senderName+"*!", "true")
+				message.SendText(util.GetString([]string{"stop_message", lang})+senderName, "true")
 				message.ActivateNextScene(StartScene{})
 
 			case "menu", "меню", "Menu", "Меню":

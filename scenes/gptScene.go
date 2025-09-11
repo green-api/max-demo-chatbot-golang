@@ -69,7 +69,7 @@ func (s GptScene) Start(bot *chatbot.Bot) {
 			}
 			message.SendUrlFile(welcomeFileURL,
 				"welcome.jpg",
-				util.GetString([]string{"welcome_message", lang})+"*"+senderName+"*!"+"\n"+util.GetString([]string{"menu", lang}))
+				util.GetString([]string{"welcome_message", lang})+senderName+"\n"+util.GetString([]string{"menu", lang}))
 
 			message.ActivateNextScene(EndpointsScene{})
 			return
