@@ -38,7 +38,7 @@ func main() {
 		OpenAIApiKey:     openaiToken,
 		Model:            gptbot.ModelGPT4o,
 		MaxHistoryLength: 10,
-		SystemMessage:    "You are a helpful WhatsApp assistant.",
+		SystemMessage:    "You are a helpful Max assistant.",
 	}
 	gptHelper := gptbot.NewMaxGptBot(gptConfig)
 

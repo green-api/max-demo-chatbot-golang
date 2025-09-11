@@ -2,7 +2,7 @@
 
 - [Документация на русском](README_RU.md).
 
-An example of a chatbot written in Go using the API service for Whatsapp [green-api.com](https://green-api.com/en/).
+An example of a chatbot written in Go using the API service for Max [green-api.com](https://green-api.com/en/).
 The chatbot clearly demonstrates the use of the API to send text messages, files, pictures, locations, contacts, and integrates OpenAI GPT for intelligent conversations.
 
 
@@ -27,7 +27,7 @@ After completion, you need to check whether the environment was deployed correct
 ```
 To work correctly, the response to the entered request must be a version of Go no lower than:
 ```
-    go version go 1.19
+    go version go 1.24
 ```
 
 Download and unzip the [zip-archive](https://github.com/green-api/max-demo-chatbot-golang) of the project or clone it with the version control system command:
@@ -44,11 +44,11 @@ Download and install the Git version control system appropriate for your operati
 
 Open the project in any IDE.
 
-The environment for launching the chatbot is ready, now you need to configure and launch the chatbot on your Whatsapp account.
+The environment for launching the chatbot is ready, now you need to configure and launch the chatbot on your Max account.
 
 ## Launch a chatbot
 
-In order to set up a chatbot on your Whatsapp account, you need to go to [your personal account](https://console.greenapi.com/) and register. For new users, [instructions](https://greenapi.com/en/docs/before-start/) are provided for setting up an account and obtaining the parameters necessary for the chatbot to work, namely:
+In order to set up a chatbot on your Max account, you need to go to [your personal account](https://console.greenapi.com/) and register. For new users, [instructions](https://greenapi.com/en/docs/before-start/) are provided for setting up an account and obtaining the parameters necessary for the chatbot to work, namely:
 ```
     idInstance
     apiTokenInstance
@@ -76,10 +76,8 @@ The library [max-chatbot-golang](https://github.com/green-api/max-chatbot-golang
 All settings for receiving notifications are disabled by default; the chatbot will enable the following settings:
 ```
      "incomingWebhook": "yes",
-     "pollMessageWebhook": "yes",
      "markIncomingMessagesReaded": "yes"
 ```
-which are responsible for receiving notifications about incoming messages and polls.
 
 The process of changing settings takes several minutes, during which time the instance will be unavailable. Messages sent to the chatbot during this time will not be processed.
 
@@ -118,7 +116,7 @@ All changes must be saved, after which you can launch the chatbot. To launch the
 
 ## Usage
 
-If the previous steps have been completed, then the chatbot should be working on your Whatsapp account. It is important to remember that the user must be authorized in [personal account](https://console.green-api.com/).
+If the previous steps have been completed, then the chatbot should be working on your Max account. It is important to remember that the user must be authorized in [personal account](https://console.green-api.com/).
 
 Now you can send messages to the chatbot!
 
@@ -132,11 +130,13 @@ Answer 1 or 2 to select the language for further communication. After you send 1
 ```
 Welcome to GREEN-API chatbot, user! GREEN-API provides the following types of data sending. Select a number from the list to check how the sending method works
 
+1. Text message 📩\n2. File 📋\n3. Image 🖼\n4. Audio 🎵\n5. Video
+
 1. Text message 📩
 2. File 📋
-3. Picture 🖼
-4. Contact 📱
-5. Geolocation 🌎
+3. Image 🖼
+4. Audio 🎵
+5. Video 📽
 6. ...
 9. 🔥 Conversation with ChatGPT 🤖
 
@@ -194,7 +194,7 @@ func main() {
        OpenAIApiKey:     openaiToken,
        Model:            gptbot.ModelGPT4o,
        MaxHistoryLength: 10,
-       SystemMessage:    "You are a helpful WhatsApp assistant.",
+       SystemMessage:    "You are a helpful Max assistant.",
     }
     gptHelper := gptbot.NewMaxGptBot(gptConfig)
     registry.RegisterGptHelper(gptHelper)
@@ -237,14 +237,14 @@ For example, a chatbot automatically sends a message to the contact from whom it
 ```go
      message.AnswerWithText(util.GetString([]string{"select_language"}))
 ```
-However, other send methods can be called directly from the [whatsapp-api-client-golang](https://github.com/green-api/whatsapp-api-client-golang) library. Like, for example, when receiving an avatar:
+However, other send methods can be called directly from the [Max-api-client-golang](https://github.com/green-api/Max-api-client-golang) library. Like, for example, when receiving an avatar:
 ```go
      message.GreenAPI.Methods().Service().GetAvatar(chatId)
 ```
 
 ## GPT Functionality
 
-The chatbot integrates with OpenAI's GPT models using the [whatsapp-chatgpt-go](https://github.com/green-api/max-chatgpt-go) library. This enables the bot to have intelligent conversations with users.
+The chatbot integrates with OpenAI's GPT models using the [Max-chatgpt-go](https://github.com/green-api/max-chatgpt-go) library. This enables the bot to have intelligent conversations with users.
 
 ### How it works
 
