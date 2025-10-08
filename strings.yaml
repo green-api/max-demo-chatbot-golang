@@ -2,12 +2,12 @@ select_language: "1 - English \n2 - Қазақша\n3 - Русский\n4 - Espa
 specify_language: "Please choose a language for further conversation\n1 - English \n2 - Қазақша\n3 - Русский\n4 - Español\n5 - עברית"
 please_use_text: "Please enter a text message for further conversation with bot\n"
 welcome_message:
-  ru: "Добро пожаловать в GREEN API чат-бот, "
-  en: "Welcome to the GREEN API chatbot, "
-  he: "ברוכים הבאים לצ'אטבוט GREEN API, "
-  es: "Bienvenido al chatbot GREEN API, "
+  ru: "Добро пожаловать в GREEN API чат-бот"
+  en: "Welcome to the GREEN API chatbot"
+  he: "ברוכים הבאים לצ'אטבוט GREEN API"
+  es: "Bienvenido al chatbot GREEN API"
   ar: ""
-  kz: "GREEN API чат-ботына қош келдіңіз, "
+  kz: "GREEN API чат-ботына қош келдіңіз"
 stop_message:
   ru: "Спасибо за использование чат-бота GREEN API, "
   en: "Thank you for using the GREEN API chatbot, "

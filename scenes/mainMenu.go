@@ -50,9 +50,14 @@ func (s MainMenuScene) sendMainMenu(message *chatbot.Notification, lang string) 
 	} else {
 		welcomeFileURL = "https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/welcome_ru.jpg"
 	}
+
+	var name string
+	if message.Body["senderData"].(map[string]interface{})["senderName"] != nil && len(message.Body["senderData"].(map[string]interface{})["senderName"].(string)) > 0 {
+		name = ", " + message.Body["senderData"].(map[string]interface{})["senderName"].(string)
+	}
 	message.SendUrlFile(welcomeFileURL,
 		"welcome.jpg",
-		util.GetString([]string{"welcome_message", lang})+message.Body["senderData"].(map[string]interface{})["senderName"].(string)+"!"+"\n"+util.GetString([]string{"menu", lang}))
+		util.GetString([]string{"welcome_message", lang})+name+"!"+"\n"+util.GetString([]string{"menu", lang}))
 	message.ActivateNextScene(EndpointsScene{})
 
 }

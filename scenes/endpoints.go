@@ -85,7 +85,7 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				}
 
 			case "7":
-				message.SendText(util.GetString([]string{"add_to_contact", lang}), "true")
+				//message.SendText(util.GetString([]string{"add_to_contact", lang}), "true")
 				//botPhoneStr := strings.ReplaceAll(botNumber, "@c.us", "")
 				//botPhoneInt, _ := strconv.Atoi(botPhoneStr)
 				//message.SendContact(greenapi.Contact{PhoneContact: botPhoneInt, FirstName: util.GetString([]string{"bot_name", lang})})
