@@ -177,12 +177,12 @@ send_link_message_no_preview:
   ar: ""
   kz: "Бұл хабарлама превьюcіз sendMessage әдісі арқылы жіберілген\nПревьюді алып тастау үшін linkPreview: false мәнін енгізу керек\n\nӘдіс жұмысы туралы білу үшін сілтеме бойынша өтіңіз\n"
 add_to_contact:
-  ru: "👥 Для корректного создания группы пожалуйста добавьте контакт бота.\nПосле добавления контакта подтвердите добавление\n\n1 - добавил, можно создавать группу\n0 - не буду добавлять"
-  en: "👥 To create the group successfully, please add the bot contact.\nAfter adding the contact, confirm the addition\n\n1 - added, can create the group\n0 - will not add"
-  he: "👥 כדי ליצור קבוצה בהצלחה, אנא הוסף את יצור הצ'אט לאנשי קשר שלך.\nלאחר הוספת הקשר, אשר את ההוספה\n\n1 - הוספתי, ניתן ליצור קבוצה\n0 - לא אוסיף"
-  es: "👥 Para crear el grupo correctamente, por favor, agrega el contacto del bot.\nDespués de agregar el contacto, confirma la adición\n\n1 - agregado, se puede crear el grupo\n0 - no agregaré"
+  ru: "👥 Если группа не была создана, то для её корректного создания, пожалуйста, добавьте контакт бота."
+  en: "👥 If the group wasn't created, please add the bot's contact to create it successfully."
+  he: "👥 במידה והקבוצה לא נוצרה, נא להוסיף את יצור הצ'אט לאנשי הקשר."
+  es: "👥 Si el grupo no se creó, por favor, agrega el contacto del bot para crearlo correctamente."
   ar: ""
-  kz: "👥 Группаны дұрыс құру үшін, бот контактіге қосыңыз.\nКонтактіні қосқаннан кейін қосылымды растаңыз\n\n1 - қостым, топты құруға болады\n0 - қоспаймын"
+  kz: "👥 Группаның құрылмаған жағдайында, бот контактісін қосуға өтінеміз."
 group_name:
   ru: "Группа с демо чат-ботом"
   en: "Group with demo chat bot"

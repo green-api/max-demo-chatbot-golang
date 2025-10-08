@@ -85,11 +85,59 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				}
 
 			case "7":
-				//message.SendText(util.GetString([]string{"add_to_contact", lang}), "true")
-				//botPhoneStr := strings.ReplaceAll(botNumber, "@c.us", "")
-				//botPhoneInt, _ := strconv.Atoi(botPhoneStr)
-				//message.SendContact(greenapi.Contact{PhoneContact: botPhoneInt, FirstName: util.GetString([]string{"bot_name", lang})})
-				message.ActivateNextScene(CreateGroupScene{})
+				if !util.IsSessionExpired(message) {
+					lang := message.GetStateData()["lang"].(string)
+					senderId, _ := message.Sender()
+
+					groupResp, err := message.Groups().CreateGroup(
+						util.GetString([]string{"group_name", lang}),
+						[]string{senderId})
+					if err != nil {
+						*message.ErrorChannel <- err
+						message.ActivateNextScene(EndpointsScene{})
+					}
+					var group map[string]interface{}
+					_ = json.Unmarshal(groupResp.Body, &group)
+
+					var groupId = group["chatId"].(string)
+					message.StateManager.Create(groupId)
+					message.StateManager.UpdateStateData(groupId, message.GetStateData())
+					message.StateManager.ActivateNextScene(groupId, EndpointsScene{})
+
+					resp, err := message.Groups().SetGroupPicture(
+						"assets/Group_avatar.jpg",
+						groupId)
+					if err != nil {
+						*message.ErrorChannel <- err
+					} else {
+						var picResp map[string]interface{}
+						_ = json.Unmarshal(resp.Body, &picResp)
+
+						if picResp["setGroupPicture"].(bool) {
+							_, err := message.Sending().SendMessage(
+								groupId,
+								util.GetString([]string{"send_group_message", lang})+util.GetString([]string{"links", lang, "groups_documentation"}))
+							if err != nil {
+								*message.ErrorChannel <- err
+							}
+						} else {
+							_, err := message.Sending().SendMessage(
+								groupId,
+								util.GetString([]string{"send_group_message_set_picture_false", lang})+util.GetString([]string{"links", lang, "groups_documentation"}))
+							if err != nil {
+								*message.ErrorChannel <- err
+							}
+						}
+					}
+					message.SendText(util.GetString([]string{"group_created_message", lang}) +
+						group["groupInviteLink"].(string))
+					message.SendText(util.GetString([]string{"add_to_contact", lang}), "true")
+					message.ActivateNextScene(EndpointsScene{})
+
+				} else {
+					message.ActivateNextScene(MainMenuScene{})
+					message.SendText(util.GetString([]string{"select_language"}))
+				}
 
 			case "8":
 				message.SendUrlFile("https://raw.githubusercontent.com/green-api/max-demo-chatbot-golang/refs/heads/master/assets/about_go.jpg", "logo.jpg",
@@ -120,7 +168,11 @@ func (s EndpointsScene) Start(bot *chatbot.Bot) {
 				message.ActivateNextScene(GptScene{})
 
 			case "стоп", "Стоп", "stop", "Stop", "0":
-				message.SendText(util.GetString([]string{"stop_message", lang})+senderName, "true")
+				name := "!"
+				if senderName != "" {
+					name = ", " + senderName + "!"
+				}
+				message.SendText(util.GetString([]string{"stop_message", lang})+name, "true")
 				message.ActivateNextScene(StartScene{})
 
 			case "menu", "меню", "Menu", "Меню":
